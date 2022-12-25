@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Employees{% endblock title %}
+
+{% block body %}
+<h3>Fill up the form below to add an employee</h3>
+
+<form action="/add" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="firstname" class="form-label">First Name</label>
+        <input type="text" class="form-control" name="firstname" placeholder="Enter the first name" id="firstname" for="firstname">
+    </div>
+    <div class="mb-3">
+        <label for="lastname" class="form-label">Last Name</label>
+        <input type="text" class="form-control" name="lastname" placeholder="Enter the last name" id="lastname" for="lastname">
+    </div>
+    <div class="mb-3">
+        <label for="phone" class="form-label">Phone</label>
+        <input type="number" class="form-control" name="phone" placeholder="Enter phone" id="phone" for="phone">
+    </div>
+    <div class="row">
+    <div class="mb-3 col-md-4">
+        <label for="department" class="form-label">Department</label>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" name="department" type="button" data-bs-toggle="dropdown" aria-expanded="false"for="department">
+              Choose the Department
+            </button>
+            <ul class="dropdown-menu">
+              {% for dept in  depts%}
+              <li><a class="dropdown-item" value="{{dept.id}}"href="#">{{dept.dept_name}}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+    </div>
+    <div class="mb-3 col-md-4">
+        <label for="role" class="form-label">Role</label>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" name="role" type="button" data-bs-toggle="dropdown" aria-expanded="false" for="role">
+                Choose the Role
+            </button>
+            <ul class="dropdown-menu">
+                {% for role in  roles%}
+                <li><a class="dropdown-item" value="{{role.role_id}}"href="#">{{role.role_name}}</a></li>
+  
+                {% endfor %}
+              </ul>
+          </div>
+    </div>
+</div>
+    <div class="mb-3">
+        <label for="salary" class="form-label">Salary</label>
+        <input type="number" class="form-control" name="salary" placeholder="Enter Salary" id="salary" for="salary">
+    </div>
+    <div class="mb-3">
+        <label for="bonus" class="form-label">Bonus</label>
+        <input type="number" class="form-control" name="bonus" placeholder="Enter Bonus" id="bonus" for="bonus">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock body %}

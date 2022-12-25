@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %} View All Employees{% endblock title %}
+
+{% block body %}
+<h1>All Employees Here</h1>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Department</th>
+        <th scope="col">Role</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Bonus</th>
+        <th scope="col">Total Salary</th>
+        <th scope="col">Hire Date</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for emp in  emps%}
+      <tr>
+        <th scope="row">{{emp.id}}</th>
+        <td scope="col">{{emp.first_name}}</td>
+        <td scope="col">{{emp.last_name}}</td>
+        <td scope="col">{{emp.dept.dept_name}}</td>
+        <td scope="col">{{emp.role.role_name}}</td>
+        <td scope="col">{{emp.phone}}</td>
+        <td scope="col">{{emp.salary}}</td>
+        <td scope="col">{{emp.bonus}}</td>
+        <td scope="col">{{emp.salary}} +{{emp.bonus}} </td>
+        <td scope="col">{{emp.hire_date}}</td>
+      </tr> 
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock body %}
